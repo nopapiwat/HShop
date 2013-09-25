@@ -1,9 +1,8 @@
+package tools;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import tools.Burger;
-import tools.Topping;
 import topping.Bread;
 import topping.Cheese;
 import topping.Onion;
@@ -22,7 +21,6 @@ public class HShop extends Observable{
 		menu.add(new Cheese());
 		menu.add(new Onion());
 		menu.add(new Pork());
-		// fapfapfapfapfap
 		menu.add(new Tomato());
 	}
 	public void sellB(){
