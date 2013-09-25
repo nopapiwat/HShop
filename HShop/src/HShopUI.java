@@ -85,7 +85,7 @@ public class HShopUI extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		result.setText(arg.toString());
-		System.out.println("Update");
+		System.out.println("oo");
 	}
 
 }
