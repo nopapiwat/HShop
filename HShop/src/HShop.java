@@ -22,6 +22,7 @@ public class HShop extends Observable{
 		menu.add(new Cheese());
 		menu.add(new Onion());
 		menu.add(new Pork());
+		// fapfapfapfapfap
 		menu.add(new Tomato());
 	}
 	public void sellB(){
