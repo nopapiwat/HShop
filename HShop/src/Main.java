@@ -9,5 +9,6 @@ public class Main {
 		HShop shop = new HShop();
 		HShopUI ui = new HShopUI(shop);
 		shop.addObserver(ui);	
+		System.out.println("CHANGE");
 	}
 }
