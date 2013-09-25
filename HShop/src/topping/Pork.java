@@ -10,4 +10,9 @@ public class Pork implements Topping{
 		return 4;
 	}
 
+	@Override
+	public String getName() {
+		return "Pork";
+	}
+
 }

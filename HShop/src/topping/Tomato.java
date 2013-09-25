@@ -10,4 +10,9 @@ public class Tomato implements Topping {
 		return 5;
 	}
 
+	@Override
+	public String getName() {
+		return "Tomato";
+	}
+
 }

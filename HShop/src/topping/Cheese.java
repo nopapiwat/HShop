@@ -10,4 +10,9 @@ public class Cheese implements Topping {
 		return 2;
 	}
 
+	@Override
+	public String getName() {
+		return "Cheese";
+	}
+
 }

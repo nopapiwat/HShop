@@ -10,4 +10,9 @@ public class Bread implements Topping{
 		return 1;
 	}
 
+	@Override
+	public String getName() {
+		return "Bread";
+	}
+
 }

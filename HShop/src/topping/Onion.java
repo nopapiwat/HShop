@@ -10,4 +10,9 @@ public class Onion implements Topping{
 		return 3;
 	}
 
+	@Override
+	public String getName() {
+		return "Onion";
+	}
+
 }
