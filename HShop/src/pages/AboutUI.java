@@ -14,22 +14,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AboutUI extends JFrame {
+	private JFrame other;
 	
-	public static void main(String[] args) {
-		(new AboutUI()).init();
-	}
-	
-	public void init() {
-		this.setAlwaysOnTop(true);
-		this.setLocation(300, 150);
-		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		this.setPreferredSize(new Dimension(455,300));
-		this.pack();
-		this.setVisible(true);
-	}
-	
-	public AboutUI() {
-		
+	public AboutUI(JFrame m) {
+		other = m;
 		JLabel lblHshop = new JLabel("HShop");
 		lblHshop.setFont(new Font("Verdana", Font.BOLD, 32));
 		
@@ -41,6 +29,7 @@ public class AboutUI extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AboutUI.this.setVisible(false);
+				other.setVisible(true);
 			}
 		});
 		
@@ -73,6 +62,8 @@ public class AboutUI extends JFrame {
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
-		
+		setPreferredSize(new Dimension(700, 700));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pack();
 	}
 }
