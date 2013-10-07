@@ -1,24 +1,21 @@
 package pages;
 
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import tools.HShop;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import tools.HShop;
 
 public class MainPage extends JFrame implements Observer{
 	private JFrame tis;
@@ -37,6 +34,11 @@ public class MainPage extends JFrame implements Observer{
 		lblH.setFont(new Font("Dialog", Font.BOLD, 48));
 		
 		JButton btnOrder = new JButton("Order");
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new HShopUI(new HShop());
+			}
+		});
 		
 		JButton btnAbout = new JButton("About");
 		btnAbout.addActionListener(new ActionListener() {
@@ -49,12 +51,26 @@ public class MainPage extends JFrame implements Observer{
 		JButton btnHistory = new JButton("History");
 		btnHistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new HistoryUI();
 			}
 		});
 		
 		JButton btnSetting = new JButton("Setting");
 		
 		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int x = JOptionPane.showConfirmDialog(null,
+					    "Do you want to log out?",
+					    "Logout",JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (x == 0)
+					System.exit(0);
+			}
+		});
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

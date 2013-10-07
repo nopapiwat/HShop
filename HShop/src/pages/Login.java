@@ -59,7 +59,8 @@ public class Login extends JFrame{
 		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (UsrText.getText().equals("admin") && PassText.getText().equals("password")){
+//				if (UsrText.getText().equals("admin") && PassText.getText().equals("password")){
+				if (true){
 					HShop shop = new HShop();
 					MainPage m = new MainPage(shop);
 					tis.setVisible(false);

@@ -83,7 +83,10 @@ public class HShopUI extends JFrame implements Observer{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// what is it?
 				shop.sellB();
+				
+				new EditSaleUI();
 			}
 			
 		});
