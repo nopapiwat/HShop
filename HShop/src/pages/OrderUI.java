@@ -23,6 +23,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 public class OrderUI extends JFrame implements Observer{
 	private HShop shop;
@@ -39,6 +40,7 @@ public class OrderUI extends JFrame implements Observer{
 		this.shop.addObserver(this);
 		this.mainP = mainPage;
 		conf = new ConfirmUI(mainPage,this);
+		conf.setVisible(false);
 		
 		
 		setPreferredSize(new Dimension(700, 700));
@@ -99,6 +101,7 @@ public class OrderUI extends JFrame implements Observer{
 		});
 		
 		text = new JTextArea("Topping:");
+		text.setEditable(false);
 		
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -110,15 +113,17 @@ public class OrderUI extends JFrame implements Observer{
 		});
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField.setEditable(false);
 		textField.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnBack)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -152,7 +157,7 @@ public class OrderUI extends JFrame implements Observer{
 						.addComponent(btnPork, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnCheese, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnTomato, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
@@ -165,16 +170,15 @@ public class OrderUI extends JFrame implements Observer{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(text)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(text, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)))
-					.addGap(55)
-					.addComponent(btnBack)
-					.addGap(76))
+					.addGap(48)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(72))
 		);
 		getContentPane().setLayout(groupLayout);
-		setVisible(false);
 	}
 
 

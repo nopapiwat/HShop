@@ -10,24 +10,37 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import tools.Burger;
+import tools.Topping;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AboutUI extends JFrame {
-	private JFrame other;
+	private MainPage other;
+	private JTextArea textArea;
 	
-	public AboutUI(JFrame m) {
+	public AboutUI(MainPage m) {
 		other = m;
 		JLabel lblHshop = new JLabel("HShop");
 		lblHshop.setFont(new Font("Verdana", Font.BOLD, 32));
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setText("Bla Bla Bla");
 		
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textArea.setText("");
+				Object[] b =other.getShop().getHis().toArray();
+				for (Object c : b){
+					for (Object d : ((Burger)c).getDetail().toArray()){
+						textArea.setText(textArea.getText()+"+"+((Topping)d).getName());
+					}
+					textArea.setText(textArea.getText()+"\n");
+				}
 				AboutUI.this.setVisible(false);
 				other.setVisible(true);
 			}

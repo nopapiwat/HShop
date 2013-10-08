@@ -22,13 +22,17 @@ public class MainPage extends JFrame{
 	private MainPage tis;
 	private OrderUI order;
 	private AboutUI about;
+	private EditSaleUI edit;
 	
 	public MainPage(HShop shop){
 		tis = this;
 		this.shop = shop;
 		about = new AboutUI(this);
-		order = new OrderUI(tis.getShop(),this);
 		about.setVisible(false);
+		order = new OrderUI(tis.getShop(),this);
+		order.setVisible(false);
+		edit = new EditSaleUI(this);
+		edit.setVisible(false);
 		setPreferredSize(new Dimension(700, 700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
@@ -56,11 +60,18 @@ public class MainPage extends JFrame{
 		JButton btnHistory = new JButton("History");
 		btnHistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new HistoryUI();
+				new HistoryUI(tis);
+				tis.setVisible(false);
 			}
 		});
 		
 		JButton btnSetting = new JButton("Setting");
+		btnSetting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tis.setVisible(false);
+				edit.setVisible(true);
+			}
+		});
 		
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.addActionListener(new ActionListener() {
