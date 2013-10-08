@@ -17,14 +17,17 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import tools.HShop;
 
-public class MainPage extends JFrame implements Observer{
-	private JFrame tis;
+public class MainPage extends JFrame{
 	private HShop shop;
+	private MainPage tis;
+	private OrderUI order;
 	private AboutUI about;
 	
 	public MainPage(HShop shop){
 		tis = this;
+		this.shop = shop;
 		about = new AboutUI(this);
+		order = new OrderUI(tis.getShop(),this);
 		about.setVisible(false);
 		setPreferredSize(new Dimension(700, 700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -36,7 +39,9 @@ public class MainPage extends JFrame implements Observer{
 		JButton btnOrder = new JButton("Order");
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new HShopUI(new HShop());
+				tis.getShop().createBurger();
+				order.setVisible(true);
+				tis.setVisible(false);
 			}
 		});
 		
@@ -112,10 +117,9 @@ public class MainPage extends JFrame implements Observer{
 		getContentPane().setLayout(groupLayout);
 		setVisible(true);
 	}
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	
+	public HShop getShop(){
+		return this.shop;
 	}
 
 }

@@ -25,8 +25,6 @@ public class HShop extends Observable{
 	}
 	public void sellB(){
 		history.add(curB);
-		setChanged();
-		this.notifyObservers(curB.getPrice());
 	}
 	
 	public void createBurger(){
@@ -34,6 +32,8 @@ public class HShop extends Observable{
 	}
 	public void addTopping(Topping t){
 		curB.addTopping(t);
+		setChanged();
+		this.notifyObservers(curB.getPrice());
 	}
 	public ArrayList getHis(){
 		return history;
@@ -43,5 +43,8 @@ public class HShop extends Observable{
 	}
 	public ArrayList getMenu(){
 		return menu;
+	}
+	public Burger getBurger(){
+		return curB;
 	}
 }
