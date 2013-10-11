@@ -1,14 +1,8 @@
 package tools;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Observable;
-
-import topping.Bread;
-import topping.Cheese;
-import topping.Onion;
-import topping.Pork;
-import topping.Tomato;
-
 
 public class HShop extends Observable{
 	private ArrayList<Burger> history;
@@ -17,11 +11,10 @@ public class HShop extends Observable{
 	public HShop(){
 		history = new ArrayList<Burger>();
 		menu = new ArrayList<Topping>();
-		menu.add(new Bread());
-		menu.add(new Cheese());
-		menu.add(new Onion());
-		menu.add(new Pork());
-		menu.add(new Tomato());
+		menu.add(new Topping("Pork",5));
+		menu.add(new Topping("Cheese",3));
+		menu.add(new Topping("Tomato",4));
+		menu.add(new Topping("Onion",2));
 	}
 	public void sellB(){
 		curB.setTime(new Date());
@@ -42,7 +35,7 @@ public class HShop extends Observable{
 	public void deleteHis(int index){
 		history.remove(index);
 	}
-	public ArrayList getMenu(){
+	public List getMenu(){
 		return menu;
 	}
 	public Burger getBurger(){

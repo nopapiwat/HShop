@@ -22,7 +22,7 @@ public class MainPage extends JFrame{
 	private MainPage tis;
 	private OrderUI order;
 	private AboutUI about;
-	private EditSaleUI edit;
+	private SettingUI edit;
 	
 	public MainPage(HShop shop){
 		tis = this;
@@ -31,7 +31,7 @@ public class MainPage extends JFrame{
 		about.setVisible(false);
 		order = new OrderUI(tis.getShop(),this);
 		order.setVisible(false);
-		edit = new EditSaleUI(this);
+		edit = new SettingUI(this);
 		edit.setVisible(false);
 		setPreferredSize(new Dimension(700, 700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

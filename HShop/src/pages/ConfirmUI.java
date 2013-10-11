@@ -43,6 +43,7 @@ public class ConfirmUI extends JFrame{
 				ConfirmUI.this.setVisible(false);
 				paidP.setVisible(true);
 				textPane.setText("");
+				textField_1.setText("");
 				orderP.clearText();
 			}
 		});

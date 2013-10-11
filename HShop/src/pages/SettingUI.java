@@ -3,31 +3,42 @@ package pages;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import tools.HShop;
+import tools.Topping;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
-public class EditSaleUI extends JFrame {
+public class SettingUI extends JFrame {
 	private JFrame mainP;
 	private DefaultTableModel tableModel;
 	private JPanel tablePanel;
 	private JTable table;
 	private JButton btnBack;
 	
-	public EditSaleUI(JFrame m) {
+	private List<Topping> list;
+	
+	public SettingUI(JFrame m) {
 		mainP = m;
 		createTablePanel();
-		tableModel.addRow(new Object[] { "1", "cheese",
-				"5",2 });
-		tableModel.addRow(new Object[] { "2", "pork",
-				"6",2 });
+		HShop shop = ((MainPage) mainP).getShop();
+		list = shop.getMenu();
+		
+		for (Topping b : list) {
+			tableModel.addRow(new Object[] {b.getName() , b.getValue()});
+		}
 		
 		setPreferredSize(new Dimension(700, 700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,19 +48,34 @@ public class EditSaleUI extends JFrame {
 	
 	private void createTablePanel() {
 		tablePanel = new JPanel();
-		tableModel = new DefaultTableModel();
-		tableModel.addColumn("No.");
+		tableModel = new DefaultTableModel(){
+			@Override
+			public boolean isCellEditable(int row, int col) {
+			     switch (col) {
+			         case 1:
+			             return true;
+			         default:
+			             return false;
+			      }
+			}
+		};
 		tableModel.addColumn("Topping");
-		tableModel.addColumn("Price");
-		tableModel.addColumn("Amount");
+		tableModel.addColumn("Value");
+
 		table = new JTable(tableModel);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(tablePanel);
 		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+		
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditSaleUI.this.setVisible(false);
+				for (int i = 0; i < list.size(); i++)
+					((Topping)list.get(i)).setValue(1.0*(Double)(table.getValueAt(i, 1)));
+				SettingUI.this.setVisible(false);
 				mainP.setVisible(true);
 			}
 		});
@@ -77,4 +103,5 @@ public class EditSaleUI extends JFrame {
 		);
 		tablePanel.setLayout(gl_tablePanel);
 	}
+	
 }

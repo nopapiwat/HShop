@@ -14,10 +14,6 @@ import javax.swing.JTextField;
 
 import tools.HShop;
 import tools.Topping;
-import topping.Cheese;
-import topping.Onion;
-import topping.Pork;
-import topping.Tomato;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -50,7 +46,7 @@ public class OrderUI extends JFrame implements Observer{
 		JButton btnPork = new JButton("Pork");
 		btnPork.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.addTopping(new Pork());
+				shop.addTopping((Topping)shop.getMenu().get(0));
 				text.setText(text.getText()+"\nPork");
 			}
 		});
@@ -58,7 +54,7 @@ public class OrderUI extends JFrame implements Observer{
 		JButton btnCheese = new JButton("Cheese");
 		btnCheese.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.addTopping(new Cheese());
+				shop.addTopping((Topping)shop.getMenu().get(1));
 				text.setText(text.getText()+"\nCheese");
 			}
 		});
@@ -66,7 +62,7 @@ public class OrderUI extends JFrame implements Observer{
 		JButton btnTomato = new JButton("Tomato");
 		btnTomato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.addTopping(new Tomato());
+				shop.addTopping((Topping)shop.getMenu().get(2));
 				text.setText(text.getText()+"\nTomato");
 			}
 		});
@@ -74,7 +70,7 @@ public class OrderUI extends JFrame implements Observer{
 		JButton btnOnion = new JButton("Onion");
 		btnOnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.addTopping(new Onion());
+				shop.addTopping((Topping)shop.getMenu().get(3));
 				text.setText(text.getText()+"\nOnion");
 			}
 		});
