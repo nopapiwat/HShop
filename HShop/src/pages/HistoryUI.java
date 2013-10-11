@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -30,8 +32,18 @@ public class HistoryUI extends JFrame {
 		this.mainP = m;
 		createTablePanel();
 		
-		HShop shop = ((MainPage) mainP).getShop();
+		final HShop shop = ((MainPage) mainP).getShop();
 		List<Burger> list = shop.getHis();
+		
+		Action delete = new AbstractAction() {
+			public void actionPerformed(ActionEvent e) {
+				JTable table = (JTable)e.getSource();
+				int modelRow = Integer.valueOf( e.getActionCommand() );
+//				System.out.println("delete " + modelRow);
+				((DefaultTableModel)table.getModel()).removeRow(modelRow);
+				shop.getHis().remove(modelRow);
+			}
+		};
 		
 		int no = 1;
 		for (Burger b : list) {
@@ -39,11 +51,19 @@ public class HistoryUI extends JFrame {
 			for (Topping t : b.getDetail()) {
 				toppings.append(t.getName()).append(", ");
 			}
-			tableModel.addRow(new Object[] { no++, aZ(b.getTime().getHours()) + ":" +  aZ(b.getTime().getMinutes()) + ":"+  aZ(b.getTime().getSeconds()) , toppings.substring(0, toppings.length()-2),
-			b.getPrice() });
+			tableModel.addRow(new Object[] {no++,
+					aZ(b.getTime().getHours()) + ":" +  aZ(b.getTime().getMinutes()) + ":"+  aZ(b.getTime().getSeconds()) , toppings.substring(0, toppings.length()-2),
+					b.getPrice(),new ButtonColumn(table,delete,4)});
 		}
+//		table.setEnabled(false);
+
 		
-		
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setPreferredWidth(220);
+		table.getColumnModel().getColumn(3).setPreferredWidth(60);
+		table.getColumnModel().getColumn(4).setPreferredWidth(20);
 		setVisible(true);
 		setPreferredSize(new Dimension(700, 700));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,7 +79,8 @@ public class HistoryUI extends JFrame {
 		tableModel.addColumn("Time");
 		tableModel.addColumn("Detail");
 		tableModel.addColumn("Price");
-		
+		tableModel.addColumn("x");
+	
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
