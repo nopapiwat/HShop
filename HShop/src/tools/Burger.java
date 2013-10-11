@@ -1,9 +1,11 @@
 package tools;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Burger {
 	private ArrayList<Topping> topping;
+	private Date time;
 	public Burger(){
 		topping = new ArrayList<Topping>();
 		
@@ -21,7 +23,13 @@ public class Burger {
 		}
 		return sum;
 	}
-	public ArrayList getDetail(){
+	public ArrayList<Topping> getDetail(){
 		return topping;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
 	}
 }

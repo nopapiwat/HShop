@@ -1,25 +1,19 @@
 package pages;
 
 import java.awt.Dimension;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import tools.Topping;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class ConfirmUI extends JFrame{
 	private JTextPane textPane;
@@ -40,7 +34,7 @@ public class ConfirmUI extends JFrame{
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		
-		JButton btnConfrim = new JButton("Confrim");
+		JButton btnConfrim = new JButton("Confirm");
 		btnConfrim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				paidP.showChange(Double.parseDouble(textField_1.getText())-Double.parseDouble(textField.getText()));

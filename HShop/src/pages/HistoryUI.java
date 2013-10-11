@@ -1,18 +1,23 @@
 package pages;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
+
+import tools.Burger;
+import tools.HShop;
+import tools.Topping;
 
 public class HistoryUI extends JFrame {
 	private JFrame mainP;
@@ -24,11 +29,20 @@ public class HistoryUI extends JFrame {
 	public HistoryUI(JFrame m) {
 		this.mainP = m;
 		createTablePanel();
-		tableModel.addRow(new Object[] { 1,"00:00" ,"cheese+pork",
-				"45.00" });
 		
-		tableModel.addRow(new Object[] { 2, "00:00","apple+paper",
-		"30.00" });
+		HShop shop = ((MainPage) mainP).getShop();
+		List<Burger> list = shop.getHis();
+		
+		int no = 1;
+		for (Burger b : list) {
+			StringBuilder toppings = new StringBuilder();
+			for (Topping t : b.getDetail()) {
+				toppings.append(t.getName()).append(", ");
+			}
+			tableModel.addRow(new Object[] { no++, aZ(b.getTime().getHours()) + ":" +  aZ(b.getTime().getMinutes()) + ":"+  aZ(b.getTime().getSeconds()) , toppings.substring(0, toppings.length()-2),
+			b.getPrice() });
+		}
+		
 		
 		setVisible(true);
 		setPreferredSize(new Dimension(700, 700));
@@ -88,5 +102,9 @@ public class HistoryUI extends JFrame {
 		);
 		tablePanel.setLayout(gl_tablePanel);
 		getContentPane().setLayout(groupLayout);
+	}
+	
+	private String aZ(int x) {
+		return (x<10)? "0"+x : x+"";
 	}
 }

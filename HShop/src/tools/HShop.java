@@ -1,6 +1,6 @@
 package tools;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Observable;
 
 import topping.Bread;
@@ -24,6 +24,7 @@ public class HShop extends Observable{
 		menu.add(new Tomato());
 	}
 	public void sellB(){
+		curB.setTime(new Date());
 		history.add(curB);
 	}
 	
@@ -35,7 +36,7 @@ public class HShop extends Observable{
 		setChanged();
 		this.notifyObservers(curB.getPrice());
 	}
-	public ArrayList getHis(){
+	public ArrayList<Burger> getHis(){
 		return history;
 	}
 	public void deleteHis(int index){
