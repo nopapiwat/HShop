@@ -73,8 +73,9 @@ public class SettingUI extends JFrame {
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < list.size(); i++)
-					((Topping)list.get(i)).setValue(1.0*(Double)(table.getValueAt(i, 1)));
+				for (int i = 0; i < list.size(); i++){
+					(list.get(i)).setValue(new Double((table.getModel().getValueAt(i, 1).toString())));
+				}
 				SettingUI.this.setVisible(false);
 				mainP.setVisible(true);
 			}
